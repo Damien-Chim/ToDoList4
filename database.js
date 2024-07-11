@@ -62,3 +62,12 @@ export function addArrStatus(newArrayStatus, idOfCurrentUser) {
         arrayStatus: newArrayStatus
     })
 }
+
+export function getUserFirstName(idOfCurrentUser) {
+    return getDoc(doc(db, "USERS", idOfCurrentUser))
+    .then((snapshot) => {
+        if (snapshot.exists()) {
+            return snapshot.data().firstName
+        }
+    })
+}

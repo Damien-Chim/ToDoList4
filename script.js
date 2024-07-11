@@ -38,7 +38,7 @@ const auth = getAuth()
 
 // ********** START ARRAYS INITIALISATION SECTION ********** //
 
-import { getArr, getArrStatus, addArr, addArrStatus } from "./database.js"
+import { getArr, getArrStatus, addArr, addArrStatus, getUserFirstName } from "./database.js"
 
 async function fetchArrData(idOfCurrentUser) {
     let response = await getArr(idOfCurrentUser)
@@ -49,9 +49,18 @@ async function fetchArrStatusData(idOfCurrentUser) {
     let response = await getArrStatus(idOfCurrentUser)
     return response
 }
+
+async function fetchUserFirstName(idOfCurrentUser) {
+    let response = await getUserFirstName(idOfCurrentUser)
+    return response
+}
+
 const idOfCurrentUser = localStorage.getItem('currentDeviceUser')
 var arr = await fetchArrData(idOfCurrentUser)
 var arrStatus = await fetchArrStatusData(idOfCurrentUser)
+var userFirstName = await fetchUserFirstName(idOfCurrentUser)
+console.log(userFirstName)
+document.getElementById('userFirstName').innerText = userFirstName
 
 // ********** END ARRAYS INITIALISATION SECTION ********** //
 

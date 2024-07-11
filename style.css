@@ -29,12 +29,15 @@
 #shellForInputSubmitAndClrAll {
     display: flex;
     align-items: center;
+    margin-top: 10px;
+
 }
+
 #userInput {
     /* padding and margins */
     padding: 10px;
     margin-right: 10px;
-
+    width: 290px;
     /* fonts */
     font-size: large;
     font-weight: 700;
@@ -98,7 +101,7 @@ input[type="checkbox"] {
 .singleTask {
     font-size: 25px;
     list-style: none;
-    max-width: 310px;
+    max-width: 200px;
     word-wrap: break-word;
     margin-right: 20px;
 }
@@ -124,4 +127,9 @@ input[type="checkbox"] {
     transition: 0.5s;
     font-size: 25px;
     height: 40px;
+}
+
+#greetUserDiv {
+    font-size: 25px;
+    margin-bottom: 10px;
 }
