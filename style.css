@@ -1,0 +1,118 @@
+@import url('https://fonts.cdnfonts.com/css/the-aesthetic-essential');
+
+/* . is for class, # is for id */
+#outer {
+    margin-top: 30px;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+    padding: 10px;
+
+    background-image: url("yellowNoteBookBackground.jpg");
+    background-size: 600px;
+    padding-left: 80px;
+    border-radius: 15px;
+}
+
+#title {
+    font-family: 'The Aesthetic Essential', sans-serif;
+    font-size: 75px;
+    padding-top: 20px;
+}
+
+#datetime {
+    margin-bottom: 10px;
+    font-size: 20px;
+    color: #595959;
+}
+
+#shellForInputSubmitAndClrAll {
+    display: flex;
+    align-items: center;
+}
+#userInput {
+    /* padding and margins */
+    padding: 10px;
+    margin-right: 10px;
+
+    /* fonts */
+    font-size: large;
+    font-weight: 700;
+
+    /* border design */
+    border-color: #da9100;
+    border-radius: 15px 50px 30px;
+    border-width: 5px;   
+}
+
+::placeholder {
+    color: gray;
+    opacity: 0.5;
+}
+
+#addButton, #clearAllTasks {
+    /* dimensions */
+    height: 25px;
+
+    /* fonts */
+    font-size: 15px;
+
+    /* border design */
+    border-radius: 5px;
+    background-color: #FDDC5C;
+
+    /* others */
+    transition: 0.5s;
+    opacity: 0.7;
+}
+
+#addButton {
+    margin-right: 5px;
+}
+
+#clearAllTasks {
+    width: 115px;
+}
+
+#numberOfTask {
+    margin-top: 5px;
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+.tempDiv {
+    display: flex;
+    /* margin-bottom: 10px;
+    margin: 10px; */
+    margin-bottom: 10px;
+    align-items: center;
+}
+
+input[type="checkbox"] {
+    width: 25px;
+    height: 25px;
+    accent-color: green;
+    margin-right: 20px;
+}
+
+.singleTask {
+    font-size: 25px;
+    list-style: none;
+    max-width: 310px;
+    word-wrap: break-word;
+    margin-right: 20px;
+}
+
+.removeButton {
+    border-radius: 5px;
+    background-color: #FDDC5C;
+    opacity: 0.4;
+    transition: 0.5s;
+    font-size: 15px;
+    height: 25px;
+}
+
+#addButton:hover, #clearAllTasks:hover, .removeButton:hover {
+    background-color: #FDB515;
+    opacity: 1;
+}
