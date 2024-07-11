@@ -4,47 +4,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To-do list login page</title>
+    <link rel="stylesheet" href="indexStyle.css">
     <script src="auth.js" type="module"></script>
 </head>
 <body>
     <div id="signInForm">
-        <h1>Sign IN by email and password</h1>
+        <h1>To-do list sign in</h1>
 
         <form method="post" action="">
             <input id="emailInput" placeholder="Enter email">
             <br>
+            <br>
             <input id="passwordInput" placeholder="Enter password" type="password">
             <br>
-            <button id="signInButton">Sign me IN</button>
+            <br>
+            <button id="signInButton">Sign me in!</button>
         </form>
 
         <br><br>
         <div>
             Don't have an account yet?
             <br>
-            <button id="showSignUpForm">Sign UP instead</button>
+            <button id="showSignUpForm">Sign up now!</button>
         </div>
     </div>
 
     <div id="signUpForm" style="display: none;">
-        <h1>Sign UP</h1>
+        <h1>To-do list sign up</h1>
         <form method="post" action="">
             <input id="registerFirstNameInput" placeholder="Your first name">
             <br>
+            <br>
             <input id="registerLastNameInput" placeholder="Your last name">
+            <br>
             <br>
             <input id="registerEmailInput" placeholder="Your email address">
             <br>
+            <br>
             <input id="registerPasswordInput" placeholder="Set a password" type="password">
             <br>
-            <button id="signUpButton">Sign me UP</button>
+            <br>
+            <button id="signUpButton">Sign me up</button>
         </form>
         
         <br><br>
         <div>
-            Already has an account?
+            Already have an account?
             <br>
-            <button id="showSignInForm">Sign IN instead</button>
+            <button id="showSignInForm">Sign in instead</button>
         </div> 
     </div>
 <script src="scriptForLogin.js" type="module"></script>

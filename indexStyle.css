@@ -1,0 +1,65 @@
+body {
+    background-color: #ffe6c9;
+    background:linear-gradient(to right,#e2e2e2,#fffac9);
+    
+}
+
+#signInForm, #signUpForm {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px;
+    text-align: center;
+    
+}
+
+#emailInput, #passwordInput, #signInButton {
+
+    display: inline-block;
+    margin: 0 auto;
+    padding: 3px;
+    
+}
+
+#registerFirstNameInput, #registerLastNameInput, #registerLastNameInput, #registerEmailInput, #registerPasswordInput, #emailInput, #passwordInput {
+    /* padding and margins */
+    padding: 10px;
+    width: 220px;
+    /* fonts */
+    font-size: large;
+    font-weight: 700;
+
+    /* border design */
+    border-color: #da9100;
+    border-radius: 15px 50px 15px 50px;
+    border-width: 5px;
+}
+
+#signInButton, #signUpButton {
+    border-radius: 5px;
+    background-color: #FDDC5C;
+    opacity: 0.8;
+    transition: 0.5s;
+    font-size: 25px;
+    height: 40px;
+}
+
+#signInButton:hover, #signUpButton:hover, #showSignUpForm:hover, #showSignInForm:hover{
+    background-color: #FDB515;
+    opacity: 1;
+}
+
+#showSignUpForm, #showSignInForm{
+    margin-top: 5px;
+    border-radius: 5px;
+    background-color: #FDDC5C;
+    opacity: 0.8;
+    transition: 0.5s;
+    font-size: 15px;
+    height: 25px;
+}
+
+h1 {
+    font-size: 25px;
+}
