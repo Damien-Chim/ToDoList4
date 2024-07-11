@@ -57,7 +57,7 @@ signUpButton.addEventListener('click', function(event) {
         // save to database
         setDoc(doc(db, "USERS", user.uid), userData)
         .then(() => {
-            window.location.href = 'homepage.html'
+            window.location.href = 'index.html'
         })
         .catch((error) => {
             console.log("error saving information to database", error)

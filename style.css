@@ -112,7 +112,16 @@ input[type="checkbox"] {
     height: 25px;
 }
 
-#addButton:hover, #clearAllTasks:hover, .removeButton:hover {
+#addButton:hover, #clearAllTasks:hover, .removeButton:hover, #logOutButton:hover {
     background-color: #FDB515;
     opacity: 1;
+}
+
+#logOutButton {
+    border-radius: 5px;
+    background-color: #FDDC5C;
+    opacity: 0.4;
+    transition: 0.5s;
+    font-size: 25px;
+    height: 40px;
 }

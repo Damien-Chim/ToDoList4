@@ -1,16 +1,57 @@
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
+import { 
+    getFirestore, 
+    doc, 
+    getDoc,
+    setDoc,
+    updateDoc
+
+} from "https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js";
+
+import { 
+    getAuth,
+    signInWithEmailAndPassword,
+    createUserWithEmailAndPassword,
+    onAuthStateChanged, signOut
+} from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
+
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyAyO-YU26vgTVOiHUAAsIjf5EKezHzIs80",
+  authDomain: "todolist4-9a02c.firebaseapp.com",
+  projectId: "todolist4-9a02c",
+  storageBucket: "todolist4-9a02c.appspot.com",
+  messagingSenderId: "418956479023",
+  appId: "1:418956479023:web:d8521bcc43c902e57a94da"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore();
+const auth = getAuth()
+
+
+
 // ********** START ARRAYS INITIALISATION SECTION ********** //
 
-import { getArr, addArr, removeAllArrays } from "./database.js"
+import { getArr, getArrStatus, addArr, addArrStatus } from "./database.js"
 
-async function fetchData(path) {
-    let response = await getArr(path)
+async function fetchArrData(idOfCurrentUser) {
+    let response = await getArr(idOfCurrentUser)
     return response
 }
 
-var arr = await fetchData("Arrays/" + "arr")
-var arrStatus = await fetchData("Arrays/" + "arrStatus")
-console.log(arr)
-console.log(arrStatus)
+async function fetchArrStatusData(idOfCurrentUser) {
+    let response = await getArrStatus(idOfCurrentUser)
+    return response
+}
+const idOfCurrentUser = localStorage.getItem('currentDeviceUser')
+var arr = await fetchArrData(idOfCurrentUser)
+var arrStatus = await fetchArrStatusData(idOfCurrentUser)
 
 // ********** END ARRAYS INITIALISATION SECTION ********** //
 
@@ -226,7 +267,7 @@ function initiatePopOut(areaToClear) {
         // clear the arrays
         arr = []
         arrStatus = []
-        removeAllArrays()
+        updateDataBase(arr, arrStatus)
         areaToClear.innerHTML = ""
         document.getElementById("numberOfTask").innerHTML = "You have no tasks remaining!"
     }
@@ -237,11 +278,11 @@ function initiatePopOut(areaToClear) {
 
 
 
-// ********** START UPDATING LOCAL STORAGE SECTION ********** //
+// ********** START UPDATING DATABASE SECTION ********** //
 
 function updateDataBase(arr, arrStatus) {
-    addArr(arr, "Arrays/" + "arr")
-    addArr(arrStatus, "Arrays/" + "arrStatus")
+    addArr(arr, idOfCurrentUser)
+    addArrStatus(arrStatus, idOfCurrentUser)
 }
 
 // ********** END UPDATING LOCAL STORAGE SECTION ********** //
@@ -308,3 +349,16 @@ setInterval(() => {
 }, 1000)
 
 // ********** END TIME DISPLAY SECTION ********** //
+
+
+
+var logOutButton = document.getElementById("logOutButton")
+logOutButton.addEventListener("click", (event) => {
+    
+    signOut(auth)
+    .then(() => {
+        window.location.href = "index.html"
+    })
+    localStorage.removeItem('currentDeviceUser')
+    
+})
