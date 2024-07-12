@@ -59,7 +59,7 @@ const idOfCurrentUser = localStorage.getItem('currentDeviceUser')
 var arr = await fetchArrData(idOfCurrentUser)
 var arrStatus = await fetchArrStatusData(idOfCurrentUser)
 var userFirstName = await fetchUserFirstName(idOfCurrentUser)
-console.log(userFirstName)
+// console.log(userFirstName)
 document.getElementById('userFirstName').innerText = userFirstName
 
 // ********** END ARRAYS INITIALISATION SECTION ********** //

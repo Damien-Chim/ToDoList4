@@ -10,7 +10,8 @@ import {
 import { 
     getAuth,
     signInWithEmailAndPassword,
-    createUserWithEmailAndPassword
+    createUserWithEmailAndPassword, 
+    sendEmailVerification
 } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -43,25 +44,30 @@ signUpButton.addEventListener('click', function(event) {
     createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
         const user = userCredential.user
-
-        // to be saved into the database
-        const userData = {
-            email: email,
-            firstName: firstName,
-            lastName: lastName,
-            uniqueIdentifier: user.uid,
-            array: [],
-            arrayStatus: []
-        }
-        alert("Account created successfully")
-        // save to database
-        setDoc(doc(db, "USERS", user.uid), userData)
+        sendEmailVerification(auth.currentUser)
         .then(() => {
-            window.location.href = 'index.html'
+            
+            // to be saved into the database
+            const userData = {
+                email: email,
+                firstName: firstName,
+                lastName: lastName,
+                uniqueIdentifier: user.uid,
+                array: [],
+                arrayStatus: []
+            }
+            
+            // save to database
+            setDoc(doc(db, "USERS", user.uid), userData)
+            .then(() => {
+                window.location.href = 'verifyYourEmail.html'
+            })
+            .catch((error) => {
+                console.log("error saving information to database", error)
+            })
+
         })
-        .catch((error) => {
-            console.log("error saving information to database", error)
-        })
+
     })
 
     .catch((error) => {
@@ -90,8 +96,38 @@ signInButton.addEventListener('click', function(event) {
     signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
         const user = userCredential.user
-        localStorage.setItem('currentDeviceUser', user.uid)
-        window.location.href = 'homepage.html'
+        if (user.emailVerified) {
+            localStorage.setItem('currentDeviceUser', user.uid)
+            window.location.href = 'homepage.html'
+        }
+
+        else {
+            if (confirm("Seems like your email is not verified yet. Click OK to verify now")) {
+                sendEmailVerification(auth.currentUser)
+                .then(() => {
+                    alert("Verification email sent to " + email)
+                })
+                .catch((error) => {
+                    var errorCode = error.code
+                    if (errorCode === 'auth/too-many-requests') {
+                        alert("Please wait for a while before requesting for another verification link")
+                    }
+                })
+            }
+            
+
+            // var messageDiv = document.createElement("div")
+            // var verifyNowButton = document.createElement("button")
+            // verifyNowButton.innerHTML = "Verify Now!"
+            // messageDiv.appendChild(verifyNowButton)
+            // signInForm.appendChild(messageDiv)
+
+            // verifyNowButton.addEventListener("click", () => {
+            //     sendEmailVerification(auth.currentUser)
+            // })
+
+        }
+
     })
     .catch((error) => {
         const errorCode = error.code
@@ -108,3 +144,14 @@ signInButton.addEventListener('click', function(event) {
         }
     })
 })
+
+
+// function showMessage(message, divId) {
+//     var messageDiv = document.getElementById(divId)
+//     messageDiv.style.display = "block"
+//     messageDiv.innerHTML = message
+//     messageDiv.style.opacity = 1
+//     setTimeout(function() {
+//         messageDiv.style.opacity = 0
+//     },5000)
+// }
