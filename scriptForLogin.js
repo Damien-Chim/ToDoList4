@@ -8,6 +8,7 @@ showSignUpFormButton.addEventListener('click', function(event) {
     signInForm.style.display = 'none'
     signUpForm.style.display = 'block'
 })
+
 showSignInFormButton.addEventListener('click', function(event) {
     signUpForm.style.display = 'none'
     signInForm.style.display = 'block'

@@ -1,7 +1,6 @@
 body {
     background-color: #ffe6c9;
-    background:linear-gradient(to right,#e2e2e2,#fffac9);
-    
+    background:linear-gradient(to right,#e2e2e2,#fffac9);   
 }
 
 #signInForm, #signUpForm {
@@ -11,15 +10,12 @@ body {
     transform: translate(-50%, -50%);
     padding: 10px;
     text-align: center;
-    
 }
 
 #emailInput, #passwordInput, #signInButton {
-
     display: inline-block;
     margin: 0 auto;
     padding: 3px;
-    
 }
 
 #registerFirstNameInput, #registerLastNameInput, #registerLastNameInput, #registerEmailInput, #registerPasswordInput, #emailInput, #passwordInput {
