@@ -1,0 +1,24 @@
+body {
+    background-color: #ffe6c9;
+    background:linear-gradient(to right,#e2e2e2,#fffac9);
+}
+
+#content {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px;
+    text-align: center;
+    /* max-width: 300px; */
+}
+
+#firstLine, #secondLine, #thirdLine {
+    display: inline-block;
+    margin: 0 auto;
+    padding: 3px;
+}
+
+#insertEmail {
+    font-style: italic;
+}

@@ -1,5 +1,8 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
+import { 
+    initializeApp 
+} from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
+
 import { 
     getFirestore, 
     doc, 
@@ -13,6 +16,7 @@ import {
     createUserWithEmailAndPassword, 
     sendEmailVerification
 } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -46,7 +50,6 @@ signUpButton.addEventListener('click', function(event) {
         const user = userCredential.user
         sendEmailVerification(auth.currentUser)
         .then(() => {
-            
             // to be saved into the database
             const userData = {
                 email: email,
@@ -60,14 +63,15 @@ signUpButton.addEventListener('click', function(event) {
             // save to database
             setDoc(doc(db, "USERS", user.uid), userData)
             .then(() => {
+                // for transferring email to verification page
+                localStorage.setItem("userEmail", email)
                 window.location.href = 'verifyYourEmail.html'
             })
+
             .catch((error) => {
                 console.log("error saving information to database", error)
             })
-
         })
-
     })
 
     .catch((error) => {
@@ -107,6 +111,7 @@ signInButton.addEventListener('click', function(event) {
                 .then(() => {
                     alert("Verification email sent to " + email)
                 })
+
                 .catch((error) => {
                     var errorCode = error.code
                     if (errorCode === 'auth/too-many-requests') {
@@ -114,21 +119,9 @@ signInButton.addEventListener('click', function(event) {
                     }
                 })
             }
-            
-
-            // var messageDiv = document.createElement("div")
-            // var verifyNowButton = document.createElement("button")
-            // verifyNowButton.innerHTML = "Verify Now!"
-            // messageDiv.appendChild(verifyNowButton)
-            // signInForm.appendChild(messageDiv)
-
-            // verifyNowButton.addEventListener("click", () => {
-            //     sendEmailVerification(auth.currentUser)
-            // })
-
         }
-
     })
+
     .catch((error) => {
         const errorCode = error.code
         if (errorCode === 'auth/invalid-credential') {
@@ -144,14 +137,3 @@ signInButton.addEventListener('click', function(event) {
         }
     })
 })
-
-
-// function showMessage(message, divId) {
-//     var messageDiv = document.getElementById(divId)
-//     messageDiv.style.display = "block"
-//     messageDiv.innerHTML = message
-//     messageDiv.style.opacity = 1
-//     setTimeout(function() {
-//         messageDiv.style.opacity = 0
-//     },5000)
-// }

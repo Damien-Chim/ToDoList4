@@ -3,13 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Verify your email</title>
+    <link rel="stylesheet" href="verificationStyle.css">
 </head>
 <body>
-    <h1>Almost there!</h1>
-    <br>
-    <h2>You need to log into your email to confirm your registration before you can start using the to-do list</h2>
-    <br>
-    <h2>If you have done so, you can <a href="index.html">Sign in</a> </h2>
+    <div id="content">
+        <div id="firstLine"><h1>Almost there :)</h1></div>
+        
+        <div id="secondLine"><h2>Please log into your email at <span id="insertEmail"></span> and confirm your registration to proceed.</h2></div>
+
+        <div id="thirdLine"><h2>If you have done so, you can <a href="index.html">Sign in</a> </h2></div>
+    </div>
 </body>
+<script>
+    document.getElementById("insertEmail").innerText = localStorage.getItem("userEmail")
+    localStorage.removeItem("userEmail")
+</script>
 </html>
